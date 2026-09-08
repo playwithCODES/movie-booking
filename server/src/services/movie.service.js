@@ -16,7 +16,7 @@ const findMovieById=async(id)=>{
 }
 
 const updateMovieById=async(id, Data)=>{
-    const updatedMovie=await Movie.findByIdAndUpdate(id,Data)
+    const updatedMovie=await Movie.findByIdAndUpdate(id,Data, {new:true})
     return updatedMovie;
 }
 

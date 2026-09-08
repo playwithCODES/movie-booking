@@ -16,7 +16,7 @@ const findSeatById = async (id) => {
 };
 
 const updateSeatById = async (id, updatedData) => {
-  const updatedSeat = await Seat.findByIdAndUpdate(id, updatedData);
+  const updatedSeat = await Seat.findByIdAndUpdate(id, updatedData, {new:true});
   return updatedSeat;
 };
 

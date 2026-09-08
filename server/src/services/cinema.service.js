@@ -15,7 +15,7 @@ return cinema;
 }
 
 const updateCinemaById=async(id, data)=>{
-const updatedCinema=await Cinema.findByIdAndUpdate(id, data);
+const updatedCinema=await Cinema.findByIdAndUpdate(id, data, {new:true});
 return updatedCinema;
 }
 
