@@ -7,4 +7,6 @@ const hallSchema=z.object({
     
 })
 
-export {hallSchema};
+const updateHallSchema = hallSchema.partial();
+
+export {hallSchema, updateHallSchema};

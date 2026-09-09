@@ -1,8 +1,7 @@
 import express from "express";
 import cinemaController from "../controllers/cinema.controller.js";
 import validate from "../middleware/validate.middleware.js";
-import { cinemaSchema } from "../libs/schemas/cinema.schema.js";
-import { updateCinemaSchema } from "../libs/schemas/updateCinemaSchema.js";
+import { cinemaSchema, updateCinemaSchema } from "../libs/schemas/cinema.schema.js";
 
 const router=express.Router();
 

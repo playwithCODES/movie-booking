@@ -1,8 +1,7 @@
 import express from "express";
 import hallController from "../controllers/hall.controller.js";
 import validate from "../middleware/validate.middleware.js";
-import { hallSchema } from "../libs/schemas/hall.schema.js";
-import { updateHallSchema } from "../libs/schemas/updateHallSchema.js";
+import { hallSchema,updateHallSchema } from "../libs/schemas/hall.schema.js";
 
 const router=express.Router();
 router.post("/",validate(hallSchema), hallController.createHall);

@@ -32,6 +32,27 @@ const findShowById = async (id) => {
 };
 
 const updateShowById = async (id, updatedData) => {
+  const existingShow = await Show.findById(id);
+  if (!existingShow) {
+    throw new Error("Show Not Found");
+  }
+
+  const finalData = { ...existingShow.toObject(), ...updatedData };
+
+  const overlappingShow = await Show.findOne({
+    hallId: finalData.hallId,
+    date: finalData.date,
+    startTime: { $lt: finalData.endTime },
+    endTime: { $gt: finalData.startTime },
+    _id: { $ne: id },
+  });
+
+  if (overlappingShow) {
+    const error = new Error("Show timing overlaps with an existing show");
+    error.statusCode = 409;
+    throw error;
+  }
+
   const updatedShow = await Show.findByIdAndUpdate(id, updatedData, {
     new: true,
   });

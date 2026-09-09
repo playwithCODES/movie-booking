@@ -8,4 +8,6 @@ const seatSchema=z.object({
     status:z.enum(["MAINTENANCE", "AVAILABLE","UNAVAILABLE"])
 })
 
-export {seatSchema};
+const updateSeatSchema = seatSchema.partial();
+
+export {seatSchema, updateSeatSchema};

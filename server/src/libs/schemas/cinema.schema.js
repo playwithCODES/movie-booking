@@ -18,4 +18,6 @@ const cinemaSchema = z.object({
   isActive: z.boolean().default(true)
 });
 
-export { cinemaSchema };
+const updateCinemaSchema = cinemaSchema.partial();
+
+export { cinemaSchema, updateCinemaSchema };

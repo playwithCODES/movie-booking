@@ -1,7 +1,6 @@
 import express from "express";
 import seatController from "../controllers/seat.controller.js";
-import { seatSchema } from "../libs/schemas/seat.schema.js";
-import { updateSeatSchema } from "../libs/schemas/updateSeatSchema.js";
+import { seatSchema,updateSeatSchema  } from "../libs/schemas/seat.schema.js";
 import validate from "../middleware/validate.middleware.js";
 
 const router=express.Router();

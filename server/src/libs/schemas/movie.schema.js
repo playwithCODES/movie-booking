@@ -10,4 +10,6 @@ const movieSchema=z.object({
     banner:z.url(),
 })
 
-export {movieSchema};
+const updateMovieSchema = movieSchema.partial();
+
+export {movieSchema, updateMovieSchema};

@@ -13,4 +13,6 @@ platinumPrice: z.number().min(0),
 isActive: z.boolean().default(true)
 });
 
-export {showSchema};
+const updateShowSchema=showSchema.partial();
+
+export {showSchema, updateShowSchema};

@@ -1,8 +1,7 @@
 import express from "express";
 import showController from "../controllers/show.controller.js";
 import validate from "../middleware/validate.middleware.js";
-import { showSchema } from "../libs/schemas/show.schema.js";
-import { updateShowSchema } from "../libs/schemas/updateShowSchema.js";
+import { showSchema,updateShowSchema  } from "../libs/schemas/show.schema.js";
 
 const router=express.Router();
 
