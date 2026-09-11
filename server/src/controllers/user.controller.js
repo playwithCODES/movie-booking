@@ -32,6 +32,7 @@ const findUserByEmail = async (req, res) => {
 
 const getMe = async (req, res) => {
   const user = await userService.findUserById(req.user.userId);
+  
 
   res.send({
     id: user.id,
@@ -43,6 +44,8 @@ const getMe = async (req, res) => {
   });
 };
 
+
+
 export default {
   createUser,
   getAllUsers,
@@ -50,5 +53,5 @@ export default {
   updateUserById,
   deleteUserById,
   findUserByEmail,
-  getMe,
+  getMe
 };
