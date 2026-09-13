@@ -20,13 +20,13 @@ const createShow = async (data) => {
 };
 
 const getAllShows = async () => {
-  const showsList = await Show.find();
+  const showsList = await Show.find().populate("pricing.category");;
 
   return showsList;
 };
 
 const findShowById = async (id) => {
-  const show = await Show.findById(id);
+  const show = await Show.findById(id).populate("pricing.category");;
 
   return show;
 };

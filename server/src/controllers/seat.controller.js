@@ -1,36 +1,42 @@
-import seatService from "../services/seat.service.js"
+import seatService from "../services/seat.service.js";
 
-const createSeat=async(req,res)=>{
-const createdSeat=await seatService.createSeat(req.body);
-res.json(createdSeat);
-console.log(createdSeat);
-}
+const createMultipleSeats = async (req, res) => {
+  const multipleSeats = await seatService.createMultipleSeats(req.body);
+  res.json(multipleSeats);
+};
 
-const getAllSeats=async(req, res)=>{
-const seatsList=await seatService.getAllSeats();
-res.json(seatsList);
-console.log(seatsList);
-}
+const createSeat = async (req, res) => {
+  const createdSeat = await seatService.createSeat(req.body);
+  res.json(createdSeat);
+  console.log(createdSeat);
+};
 
-const findSeatById=async(req,res)=>{
-const seat=await seatService.findSeatById(req.params.id);
-res.json(seat);
-}
+const getAllSeats = async (req, res) => {
+  const seatsList = await seatService.getAllSeats();
+  res.json(seatsList);
+  console.log(seatsList);
+};
 
-const updateSeatById=async(req,res)=>{
-const updatedSeat=await seatService.updateSeatById(req.params.id, req.body);
-res.json(updatedSeat);
-}
+const findSeatById = async (req, res) => {
+  const seat = await seatService.findSeatById(req.params.id);
+  res.json(seat);
+};
 
-const deleteSeatById=async(req,res)=>{
-const result=await seatService.deleteSeatByID(req.params.id);
-res.json(result);
-}
+const updateSeatById = async (req, res) => {
+  const updatedSeat = await seatService.updateSeatById(req.params.id, req.body);
+  res.json(updatedSeat);
+};
 
-export default{
-    createSeat,
-    getAllSeats,
-    findSeatById,
-    updateSeatById,
-    deleteSeatById
-}
+const deleteSeatById = async (req, res) => {
+  const result = await seatService.deleteSeatByID(req.params.id);
+  res.json(result);
+};
+
+export default {
+  createSeat,
+  getAllSeats,
+  findSeatById,
+  updateSeatById,
+  deleteSeatById,
+  createMultipleSeats
+};

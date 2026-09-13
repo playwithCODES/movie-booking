@@ -7,6 +7,7 @@ const router=express.Router();
 
 router.post("/",validate(seatSchema), seatController.createSeat);
 router.get("/", seatController.getAllSeats);
+router.post("/multipleSeats",seatController.createMultipleSeats);
 router.get("/:id", seatController.findSeatById);
 router.put("/:id",validate(updateSeatSchema) ,seatController.updateSeatById);
 router.delete("/:id", seatController.deleteSeatById);

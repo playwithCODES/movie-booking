@@ -7,9 +7,13 @@ hallId:z.string({error:"hall Id is needed"}),
 date:z.coerce.date(),
 startTime:z.string(),
 endTime:z.string(),
-silverPrice: z.number().min(0),
-goldPrice: z.number().min(0),
-platinumPrice: z.number().min(0),
+pricing:z.array(
+    z.object({
+        category:z.string(),
+        price:z.number().min(0)
+    })
+),
+
 isActive: z.boolean().default(true)
 });
 

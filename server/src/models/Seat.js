@@ -16,10 +16,11 @@ const seatSchema = new mongoose.Schema({
   },
 
   category: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"SeatCategory",
     required: true,
-    enum: ["SILVER", "GOLD", "PLATINUM"],
-  },
+     },
+     
   status: {
     type: String,
     required: true,
