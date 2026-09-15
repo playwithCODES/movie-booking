@@ -7,7 +7,7 @@ const movieSchema=z.object({
     genre:z.string().min(1,"Movie genre or category is required"),
     trailerLink:z.url(),
     releaseDate:z.coerce.date({error:"Movie release date is required"}),
-    banner:z.url(),
+  
 })
 
 const updateMovieSchema = movieSchema.partial();

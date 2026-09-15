@@ -13,16 +13,16 @@ const paymentSchema = new mongoose.Schema({
   },
   amount: {
     type: Number,
-    required: true,
+    required: [true, "Amount is required"],
   },
   paymentMethod: {
     type: String,
-    required: true,
+    required: [true, "Payment method is required"],
   },
 
   transactionId: {
     type: String,
-    required: true,
+    required: [true, "Transaction Id is required"],
   },
 
   status: {
@@ -30,6 +30,12 @@ const paymentSchema = new mongoose.Schema({
     enum: ["PENDING", "SUCCESS", "FAILED"],
     default: "PENDING",
   },
+
+  createdAt:{
+    type:Date,
+    default:Date.now(),
+    immutable:true
+  }
 });
 
 const Payment = mongoose.model("Payment", paymentSchema);

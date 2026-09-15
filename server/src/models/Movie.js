@@ -28,8 +28,13 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   banner: {
-    type: String,
-    required: true,
+    url: String,
+    publicId: String,
+  },
+
+  poster: {
+    url: String,
+    publicId: String,
   },
 });
 

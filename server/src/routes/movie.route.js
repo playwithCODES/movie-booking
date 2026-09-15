@@ -15,7 +15,10 @@ router.post(
   "/",
   authMiddleware,
   roleBasedAuth(ROLE_ADMIN),
-  upload.single("poster"),
+  upload.fields([
+  { name: "poster", maxCount: 1 },
+  { name: "banner", maxCount: 1 },
+]),
   validate(movieSchema),
   movieController.createMovie,
 );
@@ -28,6 +31,10 @@ router.put(
   "/:id",
   authMiddleware,
   roleBasedAuth(ROLE_ADMIN),
+   upload.fields([
+  { name: "poster", maxCount: 1 },
+  { name: "banner", maxCount: 1 },
+]),
   validate(updateMovieSchema),
   movieController.updateMovieById,
 );

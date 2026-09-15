@@ -19,11 +19,27 @@ const updateMovieById=async(id, Data)=>{
     const updatedMovie=await Movie.findByIdAndUpdate(id,Data, {new:true})
     return updatedMovie;
 }
+const deleteMovieById = async (id) => {
+  const movie = await Movie.findById(id);
 
-const deleteMovieById=async(id)=>{
-const deleteMovie=await Movie.findByIdAndDelete(id);
-return { message: "Movie deleted successfully" };
-}
+  if (!movie) {
+    throw {
+      status: 404,
+      message: "Movie not found",
+    };
+  }
+
+  await cloudinaryService.deleteFromCloudinary(movie.poster.publicId);
+
+  await cloudinaryService.deleteFromCloudinary(movie.banner.publicId);
+
+  await Movie.findByIdAndDelete(id);
+
+  return {
+    message: "Movie deleted successfully",
+  };
+};
+
 
 
 
