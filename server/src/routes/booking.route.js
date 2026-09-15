@@ -14,7 +14,6 @@ const router = express.Router();
 router.post(
   "/",
   authMiddleware,
-  roleBasedAuth(ROLE_USER),
   bookingController.createBooking
 );
 

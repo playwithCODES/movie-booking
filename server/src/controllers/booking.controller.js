@@ -24,7 +24,7 @@ const getAllBookings = async (req, res) => {
 
 const getBookingById = async (req, res) => {
   try {
-    const booking = await bookingService.getBookingById(req.params.id);
+    const booking = await bookingService.getBookingById(req.params.id, req.user.userId);
     res.json(booking);
   } catch (error) {
     res.status(error.status || 400).send(error?.message);
@@ -54,7 +54,7 @@ const updateBookingById = async (req, res) => {
 
 const cancelBooking = async (req, res) => {
   try {
-    const cancelledBooking = await bookingService.cancelBooking(req.params.id);
+    const cancelledBooking = await bookingService.cancelBooking(req.params.id, req.user.userId);
     res.json(cancelledBooking);
   } catch (error) {
     res.status(error.status || 400).send(error?.message);

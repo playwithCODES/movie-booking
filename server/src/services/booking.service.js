@@ -101,7 +101,7 @@ const createBooking = async (data) => {
   const bookingCode = `OMX-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
 
   // 10. Booking expiry
-  const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+  const expiresAt = new Date(Date.now() + 4 * 60 * 1000);
 
   //11. Discount Rule
   const discount = await DiscountRule.findOne({
@@ -133,8 +133,11 @@ const getAllBookings = async () => {
   return ALlBookingList;
 };
 
-const getBookingById = async (id) => {
-  const bookingId = await Booking.findById(id);
+const getBookingById = async (id, userId) => {
+  const bookingId = await Booking.findOne({
+    _id: id,
+    userId: userId,
+  });
   if (!bookingId)
     throw {
       message: "Booking Id not found",
@@ -162,8 +165,11 @@ const updateBookingById = async (id, data) => {
   return updatedBooking;
 };
 
-const cancelBooking = async (id) => {
-  const booking = await Booking.findById(id);
+const cancelBooking = async (id, userId) => {
+  const booking = await Booking.findOne({
+    _id:id, 
+    userId:userId
+  });
 
   if (!booking)
     throw {
@@ -200,6 +206,30 @@ const deleteBookingById = async (id) => {
   return deletedBooking;
 };
 
+const expireBookings=async()=>{
+  const expiredBookings=await Booking.find({
+    status:"PENDING",
+    expiresAt:{
+      $lte:new Date()
+    }
+  });
+
+  for (const booking of expiredBookings){
+    booking.status="EXPIRED";
+    await booking.save();
+
+    await Seat.updateMany(
+      {_id:{$in:booking.seatIds}},
+    {
+      $set:{
+        status:"AVAILABLE"
+      }
+    }
+    )
+  }
+  return expiredBookings;
+}
+
 export default {
   createBooking,
   getAllBookings,
@@ -208,4 +238,5 @@ export default {
   updateBookingById,
   cancelBooking,
   deleteBookingById,
+  expireBookings
 };
