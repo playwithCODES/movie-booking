@@ -11,6 +11,10 @@ const config={
     apiKey:process.env.CLOUDINARY_API_KEY || "",
     apiSecret:process.env.CLOUDINARY_API_SECRET || "",
 
+},
+khalti:{
+    apiUrl:process.env.KHALTI_API_URL || "",
+    secret:process.env.KHALTI_SECRET_KEY || "",
 }
 }
 
