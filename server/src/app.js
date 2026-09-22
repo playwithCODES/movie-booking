@@ -9,6 +9,7 @@ import authRouter from "../src/routes/auth.route.js"
 import discountRouter from "../src/routes/discount.route.js"
 import bookingRouter from "../src/routes/booking.route.js"
 import paymentRouter from "../src/routes/payment.route.js"
+import ticketRouter from "../src/routes/ticket.route.js"
 import errorMiddleWare from "./middleware/error.middleware.js";
 
 
@@ -24,6 +25,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/discount", discountRouter);
 app.use("/api/bookings", bookingRouter);
 app.use("/api/payment", paymentRouter);
+app.use("/api/ticket", ticketRouter);
 app.use(errorMiddleWare);
 
 

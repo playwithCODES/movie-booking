@@ -7,6 +7,7 @@ const createBooking = async (req, res) => {
       showId: req.body.showId,
       seatIds: req.body.seatIds,
     });
+    
     res.json(createdBooking);
   } catch (error) {
     res.status(error.status || 400).send(error?.message);

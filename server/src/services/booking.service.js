@@ -50,6 +50,9 @@ const createBooking = async (data) => {
     _id: { $in: data.seatIds },
   });
 
+  console.log("SHOW HALL ID:", show.hallId);
+console.log("SEATS:", seats);
+
   // 5. Make sure all requested seats exist
   if (seats.length !== data.seatIds.length) {
     throw {
@@ -67,6 +70,8 @@ const createBooking = async (data) => {
       message: "One or more seats are not available",
     };
   }
+
+
 
   // 7. Check seats belong to show's hall
   const allSeatsBelongToShowHall = seats.every(
@@ -101,7 +106,7 @@ const createBooking = async (data) => {
   const bookingCode = `OMX-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
 
   // 10. Booking expiry
-  const expiresAt = new Date(Date.now() + 4 * 60 * 1000);
+  const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
 
   //11. Discount Rule
   const discount = await DiscountRule.findOne({
