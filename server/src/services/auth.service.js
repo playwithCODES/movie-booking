@@ -68,6 +68,7 @@ const login = async (data) => {
     name: user.name,
     email: user.email,
     phone: user.phone,
+    roles: user.roles,
     token,
     isActive: user.isActive,
   };

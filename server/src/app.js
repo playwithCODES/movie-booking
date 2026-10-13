@@ -14,6 +14,16 @@ import errorMiddleWare from "./middleware/error.middleware.js";
 
 
 const app=express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+
 app.use(express.json());
 app.use("/api/movies", movieRouter);
 app.use("/api/cinemas", cinemaRouter);

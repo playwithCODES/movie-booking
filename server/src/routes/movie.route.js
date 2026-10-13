@@ -27,6 +27,7 @@ router.get("/error-test", (req, res, next) => {
   next(new Error("Testing error middleware"));
 });
 router.get("/:id", movieController.findMovieById);
+
 router.put(
   "/:id",
   authMiddleware,
@@ -38,6 +39,7 @@ router.put(
   validate(updateMovieSchema),
   movieController.updateMovieById,
 );
+
 router.delete(
   "/:id",
   authMiddleware,
