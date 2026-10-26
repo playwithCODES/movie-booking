@@ -30,6 +30,21 @@ const findUserByEmail = async(email) => {
     return user;
 };
 
+
+const updateMyProfile = async (userId, { name, phone }) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    userId,
+    { name, phone },
+    {
+      new: true,
+      runValidators: true,
+    }
+  ).select("name email phone roles isActive");
+
+  return updatedUser;
+};
+
+
 export default {
   createUser,
   getAllUsers,
@@ -37,4 +52,5 @@ export default {
   updateUserById,
   deleteUserById,
   findUserByEmail,
+  updateMyProfile
 };

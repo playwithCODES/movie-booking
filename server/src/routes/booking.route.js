@@ -65,4 +65,12 @@ router.delete(
   bookingController.deleteBookingById
 );
 
+
+// Verify booking using QR booking code → Admin only
+router.get(
+  "/verify/:bookingCode",
+  authMiddleware,
+  roleBasedAuth(ROLE_ADMIN),
+  bookingController.verifyBookingByCode
+);
 export default router;

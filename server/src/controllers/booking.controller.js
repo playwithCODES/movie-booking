@@ -73,6 +73,20 @@ const deleteBookingById = async (req, res) => {
   }
 };
 
+const verifyBookingByCode = async (req, res) => {
+  try {
+    const booking = await bookingService.verifyBookingByCode(
+      req.params.bookingCode
+    );
+
+    res.json(booking);
+  } catch (error) {
+    res.status(error.status || 400).json({
+      message: error.message || "Unable to verify booking",
+    });
+  }
+};
+
 export default {
   createBooking,
   getAllBookings,
@@ -81,4 +95,5 @@ export default {
   updateBookingById,
   cancelBooking,
   deleteBookingById,
+  verifyBookingByCode,
 };

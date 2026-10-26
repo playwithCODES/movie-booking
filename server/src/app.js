@@ -11,6 +11,7 @@ import bookingRouter from "../src/routes/booking.route.js"
 import paymentRouter from "../src/routes/payment.route.js"
 import ticketRouter from "../src/routes/ticket.route.js"
 import errorMiddleWare from "./middleware/error.middleware.js";
+import cors from "cors";
 
 
 const app=express();

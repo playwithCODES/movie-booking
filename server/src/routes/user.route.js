@@ -8,6 +8,7 @@ const router = express.Router();
 router.post("/",authMiddleware,roleBasedAuth(ROLE_ADMIN) ,userController.createUser);
 router.get("/",authMiddleware, roleBasedAuth(ROLE_ADMIN), userController.getAllUsers);
 router.get("/me", authMiddleware, userController.getMe);
+router.put("/me",authMiddleware, userController.updateMyProfile);
 router.get("/email",authMiddleware, roleBasedAuth(ROLE_ADMIN) ,userController.findUserByEmail);
 
 router.get("/:id",authMiddleware, roleBasedAuth(ROLE_ADMIN), userController.findUserById);

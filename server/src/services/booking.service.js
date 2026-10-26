@@ -151,10 +151,18 @@ const getBookingById = async (id, userId) => {
 };
 
 const getMyBookings = async (userId) => {
-  const booking = await Booking.find({
-    userId: userId,
-  });
-  return booking;
+  const bookings = await Booking.find({ userId })
+    .populate({
+      path: "showId",
+      populate: [
+        { path: "movieId" },
+        { path: "cinemaId" },
+        { path: "hallId" },
+      ],
+    })
+    .populate("seatIds");
+
+  return bookings;
 };
 
 const updateBookingById = async (id, data) => {
@@ -211,6 +219,38 @@ const deleteBookingById = async (id) => {
   return deletedBooking;
 };
 
+const verifyBookingByCode = async (bookingCode) => {
+  const booking = await Booking.findOne({ bookingCode })
+    .populate({
+      path: "showId",
+      populate: [
+        { path: "movieId" },
+        { path: "cinemaId" },
+        { path: "hallId" },
+      ],
+    })
+    .populate("seatIds");
+
+  if (!booking) {
+    throw {
+      status: 404,
+      message: "Booking not found",
+    };
+  }
+
+  return {
+    bookingCode: booking.bookingCode,
+    status: booking.status,
+    totalAmount: booking.totalAmount,
+    movie: booking.showId?.movieId?.name,
+    cinema: booking.showId?.cinemaId?.name,
+    hall: booking.showId?.hallId?.name,
+    showDate: booking.showId?.date,
+    showTime: booking.showId?.startTime,
+    seats: booking.seatIds.map((seat) => seat.seatNumber),
+  };
+};
+
 const expireBookings=async()=>{
   const expiredBookings=await Booking.find({
     status:"PENDING",
@@ -243,5 +283,6 @@ export default {
   updateBookingById,
   cancelBooking,
   deleteBookingById,
-  expireBookings
+  expireBookings,
+  verifyBookingByCode
 };

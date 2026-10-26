@@ -44,14 +44,30 @@ const getMe = async (req, res) => {
   });
 };
 
+const updateMyProfile=async(req,res)=>{
+  const updatedUser=await userService.updateMyProfile(req.user.userId,
+    {
+      name:req.body.name,
+      phone:req.body.phone,
+    }
+  );
+  res.json({
+    id:updatedUser.id,
+    name:updatedUser.name,
+    email:updatedUser.email,
+    phone:updatedUser.phone
+  });
+}
 
 
-export default {
+
+export default {  
   createUser,
   getAllUsers,
   findUserById,
   updateUserById,
   deleteUserById,
   findUserByEmail,
-  getMe
+  getMe,
+  updateMyProfile
 };
